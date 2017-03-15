@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ content.browser_title }}
+{% endblock %}
+
+{% block metadescription %}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-12">
+      <h1>
+        {{ content.browser_title }}
+        <span class="pull-right">
+          <img class="palm-tree-alignment" src="/assets/images/palm_tree.png">
+        </span>
+      </h1>
+        <hr>
+    </div>
+
+    <div class="col-md-8 col-sm-8">
+        <div>
+
+            <form method="post" action="/services/update-services" id="editservicespage" name="editservicespage">
+
+                <article id="editableservicescontent" class="editablecontent" style="width:100%; line-height:1.7em;margin-bottom: 15px;">
+                    {{ content.page_content|raw }}
+                </article>
+
+                <article class="admin-hidden">
+                    <a class="btn btn-primary" href="#" onclick="saveEditedPage()">Save</a>
+                    <a class="btn btn-info" href="#!" onclick="turnOffEditing()">Cancel</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <!-- page_id = 0 is set @getAddPage() in AdminController -->
+                  {% if content.id == 0 %}
+                    <br><br>
+                    <input type="text" name="browser_title" placeholder="Enter browser title (slug)">
+                  {% endif %}
+                </article>
+
+                <input type="hidden" name="theservicesdata" id="theservicesdata">
+                <input type="hidden" name="oldservices" id="oldservices">
+                <input type="hidden" name="page_id" value="{{ content.id }}">
+
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-gallery">
+            <div class="services-image-animation">
+              <img src="/assets/images/page/services/planting_tree.jpg"  alt="Newmans's Ground Care">
+              <span class="text-description">Planting Trees</span>
+            </div>
+            <div class="services-image-animation">
+              <img src="/assets/images/page/services/new_shrubs.jpg"  alt="Newmans's Ground Care">
+              <span class="text-description">Planting Shrubs</span>
+            </div>
+            <div class="services-image-animation">
+              <img src="/assets/images/page/services/commercial_hand_mowing.jpg"  alt="Newmans's Ground Care">
+              <span class="text-description">Commercial Lawn Care</span>
+            </div>
+        </div>
+    </div>
+
+</div><!-- // .row  -->
+
+<div class="row">
+  <div class="col-md-4 col-sm-4">
+      <div class="services-image-animation">
+        <img src="/assets/images/page/services/tree_trimming.jpg"  alt="Newmans's Ground Care">
+        <span class="text-description">Light Tree Trimming</span>
+      </div>
+  </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/sprinkler_adjust.jpg"  alt="Newmans's Ground Care - Aeration">
+          <span class="text-description">Irrigation Available<sup>1</sup></span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/colorful_flowers.jpg"  alt="Newmans's Ground Care">
+          <span class="text-description">Create Flower Gardens</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/personal_paradise.jpg"  alt="Newmans's Ground Care">
+          <span class="text-description">Landscape Design</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/laying_sod.jpg"  alt="Newmans's Ground Care - Sod Installation &amp; Repair">
+          <span class="text-description">Sod Installation &amp; Repair</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/landscaping_rocks_boulders.jpg"  alt="Newmans's Ground Care - Installation Rocks &amp; Boulders">
+          <span class="text-description">Landscaping Rocks &amp; Boulders</span>
+        </div>
+    </div>
+</div><!--  // .row -->
+
+
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/hedge_trimming.jpg"  alt="Newmans's Ground Care - Landscape Maintenance">
+          <span class="text-description">Landscape Maintenance</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/flower_bed.jpg"  alt="Newmans's Ground Care - Annual Flower Beds">
+          <span class="text-description">Annual Flower Beds</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/gutter_cleaning.jpg"  alt="Newmans's Ground Care - Gutter Cleaning">
+          <span class="text-description">Gutter Cleaning</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/mulching.jpg"  alt="Newmans's Ground Care - Gutter Cleaning">
+          <span class="text-description">Mulch Installation</span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/spraying_fertilizer.jpg"  alt="Newmans's Ground Care - Fertilzation Available">
+          <span class="text-description">Fertilization Available<sup>1</sup></span>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/aeration.jpg"  alt="Newmans's Ground Care - Lawn aeration">
+          <span class="text-description">Lawn Aeration</span>
+        </div>
+    </div>
+
+</div><!-- // .row -->
+
+
+<div class="row">
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-animation">
+          <img src="/assets/images/page/services/landscape_lighting.jpg"  alt="Newmans's Ground Care - Landscape lights">
+          <span class="text-description">Landscape Lighting &amp; Design</span>
+        </div>
+    </div>
+</div><!-- // .row -->
+
+
+<div class="row">
+    <div class="col-md-10 col-sm-10">
+        <div class="services-footnotes">
+          <p>
+              <sup>1</sup>Services provided by a licensed contractor only. For
+              additional information including license numbers, please contact
+              our office using <a href="/contact?question=true">this convenient contact form</a>.
+          </p>
+        </div>
+    </div>
+</div><!-- // .row -->
+{% endblock %}
+
+{% block bottomjs %}
+
+  {# include javascript for page editing for logged in user with access rights #}
+  {% if session.user == true and session.access_level == 2 %}
+    {% include 'admin/admin-services-js.php' %}
+  {% endif %}
+
+{% endblock %}

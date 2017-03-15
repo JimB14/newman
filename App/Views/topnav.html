@@ -1,0 +1,111 @@
+<div class="top-header">
+  <div class="container header-height">
+      <div class="col-md-4 col-sm-4 col-xs-4 header-company-name">
+        <a href="/" title="Home">
+          Newman&apos;s Ground Care
+        </a>
+      </div>
+      <div class="col-md-5 col-sm-5 col-xs-12">
+        <a href="/" title="Home">
+          <img id="zoom-logo" class="center-block" src="/assets/images/logo.png">
+        </a>
+      </div>
+      <div class="col-md-3 col-sm-3 col-xs-3 text-right header-telephone-box">
+        <a href="tel:9042608348">904-260-8348</a>
+      </div>
+  </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="navbar-brand" href="/" title="home page">
+        Home
+      </a> -->
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="/">Home</a></li> -->
+        <li class="dropdown">
+          <a {% if aboutindex == 'true' %}style="color:#fff;"{% endif %} href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            About <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/about">About Us</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/calendar">Our Calendar</a></li>
+          </ul>
+        </li>
+        <li><a {% if servicesindex == 'true' %}style="color:#fff;"{% endif %} href="/services">Services</a></li>
+        <li><a {% if testimonialsindex == 'true' %}style="color:#fff;"{% endif %} href="/testimonials">Testimonials</a></li>
+        <li class="dropdown">
+          <a {% if contactindex == 'true' %}style="color:#fff;"{% endif %} href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Contact <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/contact/get-quote">Get Quote</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/contact?question=sell">Sell to Us</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/contact?question=career">Employment</a></li>
+          </ul>
+        </li>
+
+        <!-- call public static function in LoggedIn class -->
+          {% if session.user %}
+          <li><a {% if addtestimonialindex == 'true' %}style="color:#fff;"{% endif %} href="/testimonials/add-testimonial">Add Testimonial</a></li>
+          <li><a><span style="color:#fff;">Welcome {{ session.first_name }}!</span></a></li>
+          {% endif %}
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+            {% if session.user == true and session.access_level == 2 %}
+            <li class=dropdown>
+                <a href=# class=dropdown-toggle id=drop1 data-toggle=dropdown role=button aria-haspopup=true aria-expanded=false>
+                  Admin
+                  <span class=caret></span>
+                </a>
+                <ul class=dropdown-menu aria-labelledby=drop1>
+                  <li><a class="menu-item" href="#" onclick="makePageEditable(this)">Edit page</a></li>
+                  <li role=separator class=divider></li>
+                  <!--
+                  <li><a href="/admin/page/add">Add page</a></li>
+                  <li role=separator class=divider></li>
+                  <li><a href="#">Another action</a></li>
+                -->
+                </ul>
+            </li>
+            {% endif %}
+            {% if session.user %}
+            <li>
+              <a href="/logout">
+                <!-- <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> -->
+                Log Out
+              </a>
+            </li>
+            {% endif %}
+
+            {% if session.user == false %}
+            <li>
+              <a {% if registerindex == 'true' %}style="color:#fff;"{% endif %} href="/register">
+                Register
+              </a>
+            </li>
+            <li>
+              <a {% if loginindex == 'true' %}style="color:#fff;"{% endif %} href="/login">
+                <!-- <span class="glyphicon glyphicon-lock" aria-hidden="true"></span> -->
+                Log In
+              </a>
+            </li>
+            {% endif %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>

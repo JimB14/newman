@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Success
+{% endblock %}
+
+{% block metadescription %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-md-12">
+        <h1>
+          Success
+          <span class="pull-right">
+            <img class="palm-tree-alignment" src="/assets/images/palm_tree.png">
+          </span>
+        </h1>
+        <hr>
+    </div>
+
+    <div class="col-md-8 col-sm-8">
+        {% if first_name %}
+          <h3>
+            Thanks {{ first_name }}! {{ message }}
+          </h3>
+          {% else %}
+          <h3>
+            {{ message }}
+          </h3>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div style="margin-bottom: 128px;">
+            <img style="opacity: .6;" class="img-responsive" src="/assets/images/page/success/success.jpg" alt="Newman's Ground Care">
+        </div>
+    </div>
+</div><!-- // .row  -->
+
+{% endblock %}

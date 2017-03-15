@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+  Testimonials
+{% endblock %}
+
+{% block metadescription %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>
+          Testimonials
+          <span class="pull-right">
+            <img class="palm-tree-alignment" src="/assets/images/palm_tree.png">
+          </span>
+        </h1>
+        <hr>
+    </div>
+
+    <div class="col-md-8">
+        <div>
+            <div class="list-group">
+              <div class="list-group-item testimonials-title-bg-box">
+                <h3>What clients are saying . . .</h3>
+              </div>
+                {% for item in testimonials %}
+                <div class="testimonial-block">
+                    <a href="#" class="list-group-item">
+                        <p class="list-group-item-text">Posted by {{ item.first_name }} on {{ item.created_at|date("m-d-Y") }}</p>
+                        <h4 class="list-group-item-heading"><strong>{{ item.title }}</strong></h4>
+                        <p class="list-group-item-text">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            <span style="display: block; margin-left: 15px;">
+                              {{ item.testimonial|raw }}
+                            <span>
+                        </p>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+          <div>
+              <img class="img-responsive" src="/assets/images/page/testimonials/planting_tree.jpg"  alt="Newman's Ground Care - Testimonials">
+          </div>
+    </div>
+</div><!-- // .row  -->
+
+{% endblock %}
