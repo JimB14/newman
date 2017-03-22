@@ -6,6 +6,7 @@ use \App\Models\Testimonial;
 use \Core\View;
 use \App\Models\User;
 use \App\Mail;
+use \App\Models\Page;
 
 
 /**
@@ -57,8 +58,12 @@ class Testimonials extends \Core\Controller
      */
     public function addTestimonial()
     {
+        // retrieve testimonials from db
+        $content = Page::getAddTestimonialPageData();
+
         View::renderTemplate('Testimonials/add-testimonial.html', [
-            'addtestimonialindex' => 'true'
+            'addtestimonialindex' => 'true',
+            'content'             => $content
         ]);
     }
 
@@ -168,5 +173,17 @@ class Testimonials extends \Core\Controller
                 exit();
             }
         }
+    }
+
+
+    /**
+     * updates Add Testimonial page in pages table
+     *
+     * @return void
+     */
+    public function updateAddtestimonial()
+    {
+        // update about page
+        Page::updateAddtestimonialPage();
     }
 }

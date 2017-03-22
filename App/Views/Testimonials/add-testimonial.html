@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-  Add testimonial
+  {{ content.browser_title }}
 {% endblock %}
 
 {% block metadescription %}
@@ -13,43 +13,76 @@
 <div class="row">
 
     <div class="col-md-12">
-        <h1>Add Testimonial <i class="fa fa-envira pull-right"></i></h1>
+      <h1>
+        {{ content.browser_title }}
+        <span class="pull-right">
+          <img class="palm-tree-alignment" src="/assets/images/palm_tree.png">
+        </span>
+      </h1>
         <hr>
     </div>
 
     <div class="col-md-8">
 
-          {% if session.addtestimonialerror %}
-            {% include 'errormessage.php' %}
-          {% endif %}
+        <div>
+            <form method="post" action="/testimonials/update-addtestimonial" id="editaddtestimonialpage" name="editaddtestimonialpage">
 
-          <form method="post" name="testimonialform" class="form-horizontal" id="testimonialform" action="/testimonials/submit-testimonial">
+                <article id="editableaddtestimonialcontent" class="editablecontent" style="width:100%; line-height:1.7em;margin-bottom: 15px;">
+                    {{ content.page_content|raw }}
+                </article>
 
-              <div class="form-group">
-                  <label for="title"  class="col-sm-3 control-label">Title</label>
-                  <div class="col-sm-9">
-                      <input type="text" class="form-control required" id="title" name="title" placeholder="title" autofocus>
-                  </div>
-              </div>
+                <article class="admin-hidden">
+                    <a class="btn btn-primary" href="#" onclick="saveEditedPage()">Save</a>
+                    <a class="btn btn-info" href="#!" onclick="turnOffEditing()">Cancel</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <!-- page_id = 0 is set @getAddPage() in AdminController -->
+                  {% if content.id == 0 %}
+                    <br><br>
+                    <input type="text" name="browser_title" placeholder="Enter browser title (slug)">
+                  {% endif %}
+                </article>
 
-              <div class="form-group">
-                  <label for="testimonial"  class="col-sm-3 control-label">Testimonial</label>
-                  <div class="col-sm-9">
-                      <textarea class="form-control required" id="testimonial" name="testimonial" placeholder="testimonial"></textarea>
-                  </div>
-              </div>
+                <input type="hidden" name="theaddtestimonialdata" id="theaddtestimonialdata">
+                <input type="hidden" name="oldaddtestimonial" id="oldaddtestimonial">
+                <input type="hidden" name="page_id" value="{{ content.id }}">
 
-              <hr>
+            </form>
+        </div>
 
-              <div class="form-group">
-                  <div class="col-sm-offset-3 col-sm-9">
-                      <button type="submit" class="btn btn-primary">Submit Testimonial</button>
-                  </div>
-              </div>
+        <hr>
 
-          </form>
 
-          <br><br>
+        {% if session.addtestimonialerror %}
+          {% include 'errormessage.php' %}
+        {% endif %}
+
+        <form method="post" name="testimonialform" class="form-horizontal" id="testimonialform" action="/testimonials/submit-testimonial">
+
+            <div class="form-group">
+                <label for="title"  class="col-sm-3 control-label">Title</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control required" id="title" name="title" placeholder="title" autofocus>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="testimonial"  class="col-sm-3 control-label">Testimonial</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control required" id="testimonial" name="testimonial" placeholder="testimonial"></textarea>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">Submit Testimonial</button>
+                </div>
+            </div>
+
+        </form>
+
+        <br><br>
 
 
         <div class="col-md-4">
@@ -65,4 +98,9 @@
     //$("#testimonialform").validate();
   });
   </script>
+
+  {# include javascript for page editing for logged in user with access rights #}
+  {% if session.user == true and session.access_level == 2 %}
+    {% include 'admin/admin-add-testimonial-js.php' %}
+  {% endif %}
 {% endblock %}

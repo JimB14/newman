@@ -94,6 +94,59 @@ class Page extends \Core\Model
 
 
 
+    /**
+     * retrieve services page data
+     *
+     * @return array  All columns for services page
+     */
+    public static function getServicesPageData()
+    {
+        try
+        {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM pages WHERE id = 6";
+            $stmt = $db->query($sql);
+            $content = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $content;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
+
+
+    /**
+     * retrieve add-testimonial page data
+     *
+     * @return array  All columns for services page
+     */
+    public static function getAddTestimonialPageData()
+    {
+        try
+        {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM pages
+                    WHERE id = 10";
+            $stmt = $db->query($sql);
+            $content = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return $content;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+            exit();
+        }
+    }
+
+
+
     public static function getContactPageData()
     {
         try
@@ -113,6 +166,7 @@ class Page extends \Core\Model
           exit();
         }
     }
+
 
 
     /**
@@ -143,29 +197,6 @@ class Page extends \Core\Model
 
 
 
-    /**
-     * retrieve services page data
-     *
-     * @return array  All columns for services page
-     */
-    public static function getServicesPageData()
-    {
-        try
-        {
-            $db = static::getDB();
-
-            $sql = "SELECT * FROM pages WHERE id = 6";
-            $stmt = $db->query($sql);
-            $content = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            return $content;
-        }
-        catch(PDOException $e)
-        {
-            echo $e->getMessage();
-            exit();
-        }
-    }
 
 
 /* - - - - - - - - - update section - - - - - - - - - - - - - - */
@@ -210,7 +241,6 @@ class Page extends \Core\Model
             }
         }
     }
-
 
 
 
@@ -337,9 +367,6 @@ class Page extends \Core\Model
 
 
 
-
-
-
     /**
      * updates about page in pages table
      *
@@ -349,6 +376,48 @@ class Page extends \Core\Model
     {
         $page_id = $_REQUEST['page_id'];
         $page_content = $_REQUEST['theservicesdata'];
+
+        // echo $page_id . '<br>';
+        // echo $page_content . "<br>";
+        // exit();
+
+        // check if page exists (new page will have page_id > 0)
+        if($page_id > 0)
+        {
+            try
+            {
+                $db = static::getDB();
+
+                $sql = "UPDATE pages SET
+                        page_content = :page_content
+                        WHERE id = :id";
+                $stmt = $db->prepare($sql);
+                $parameters = [
+                    ':id' => $page_id,
+                    ':page_content' => $page_content
+                ];
+
+                return $stmt->execute($parameters);
+            }
+            catch (PDOException $e)
+            {
+                echo $e->getMessage();
+                exit();
+            }
+        }
+    }
+
+
+
+    /**
+     * updates about page in pages table
+     *
+     * @return boolean
+     */
+    public static function updateAddtestimonialPage()
+    {
+        $page_id = $_REQUEST['page_id'];
+        $page_content = $_REQUEST['theaddtestimonialdata'];
 
         // echo $page_id . '<br>';
         // echo $page_content . "<br>";
