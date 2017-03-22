@@ -3,6 +3,7 @@
 namespace Core;
 
 Use \App\Config;
+Use \Core\View;
 
 /**
  * Error and exception handler
