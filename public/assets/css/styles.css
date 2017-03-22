@@ -883,4 +883,15 @@ body {
   }
 }
 
+/*  Views/404.html  */
+#tumbleweed {
+  background: url("/assets/images/page/404/tumbleweed.jpg");
+  background-size: contain; /* Scale the image to the largest size such that
+  both its width and its height can fit inside the content area */
+  background-repeat: no-repeat;
+  color: #fff;
+  display: block;
+  max-width: 100%;
+  height: 735px;
+  opacity: .85;
 }
