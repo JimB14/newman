@@ -197,6 +197,34 @@ class Page extends \Core\Model
 
 
 
+    /**
+     * retrieves Pay online data
+     *
+     * @return array The Get Quote data
+     */
+    public static function getPayonlinePageData()
+    {
+        try
+        {
+            $db = static::getDB();
+
+            $sql = "SELECT * FROM
+                    pages WHERE id = 11";
+            $stmt = $db->prepare($sql);
+            $stmt->execute();
+            $content = $stmt->fetch(PDO::FETCH_OBJ);
+
+            return $content;
+        }
+        catch (PDOException $e)
+        {
+          echo $e->getMessage();
+          exit();
+        }
+    }
+
+
+
 
 
 /* - - - - - - - - - update section - - - - - - - - - - - - - - */
@@ -499,6 +527,44 @@ class Page extends \Core\Model
     {
         $page_id = $_REQUEST['page_id'];
         $page_content = $_REQUEST['thegetquotedata'];
+
+        // check if page exists (new page will have page_id > 0)
+        if($page_id > 0)
+        {
+            try
+            {
+                $db = static::getDB();
+
+                $sql = "UPDATE pages SET
+                        page_content = :page_content
+                        WHERE id = :id";
+                $stmt = $db->prepare($sql);
+                $parameters = [
+                    ':id' => $page_id,
+                    ':page_content' => $page_content
+                ];
+
+                return $stmt->execute($parameters);
+            }
+            catch (PDOException $e)
+            {
+                echo $e->getMessage();
+                exit();
+            }
+        }
+    }
+
+
+
+    /**
+     * updates Pay online page in pages table
+     *
+     * @return boolean
+     */
+    public static function updatePayonlinePage()
+    {
+        $page_id = $_REQUEST['page_id'];
+        $page_content = $_REQUEST['thepayonlinedata'];
 
         // check if page exists (new page will have page_id > 0)
         if($page_id > 0)

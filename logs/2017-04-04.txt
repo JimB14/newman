@@ -1,0 +1,40 @@
+[04-Apr-2017 22:36:49 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'wwwnew6_jburns14'@'localhost' (using password: YES)'
+Stack trace: #0 C:\xampp\htdocs\newman\Core\Model.php(33): PDO->__construct('mysql:host=loca...', 'wwwnew6_jburns1...', 'Hopehope1!')
+#1 C:\xampp\htdocs\newman\App\Models\Page.php(24): Core\Model::getDB()
+#2 C:\xampp\htdocs\newman\App\Controllers\Home.php(43): App\Models\Page::getHomePageData()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 C:\xampp\htdocs\newman\Core\Controller.php(57): call_user_func_array(Array, Array)
+#5 C:\xampp\htdocs\newman\Core\Router.php(179): Core\Controller->__call('index', Array)
+#6 C:\xampp\htdocs\newman\public\index.php(102): Core\Router->dispatch('')
+#7 {main}
+Thrown in  'C:\xampp\htdocs\newman\Core\Model.php' on line 33
+[04-Apr-2017 22:36:53 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'wwwnew6_jburns14'@'localhost' (using password: YES)'
+Stack trace: #0 C:\xampp\htdocs\newman\Core\Model.php(33): PDO->__construct('mysql:host=loca...', 'wwwnew6_jburns1...', 'Hopehope1!')
+#1 C:\xampp\htdocs\newman\App\Models\Page.php(24): Core\Model::getDB()
+#2 C:\xampp\htdocs\newman\App\Controllers\Home.php(43): App\Models\Page::getHomePageData()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 C:\xampp\htdocs\newman\Core\Controller.php(57): call_user_func_array(Array, Array)
+#5 C:\xampp\htdocs\newman\Core\Router.php(179): Core\Controller->__call('index', Array)
+#6 C:\xampp\htdocs\newman\public\index.php(102): Core\Router->dispatch('')
+#7 {main}
+Thrown in  'C:\xampp\htdocs\newman\Core\Model.php' on line 33
+[04-Apr-2017 22:37:43 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'wwwnew6_jburns14'@'localhost' (using password: YES)'
+Stack trace: #0 C:\xampp\htdocs\newman\Core\Model.php(33): PDO->__construct('mysql:host=loca...', 'wwwnew6_jburns1...', 'Hopehope1!')
+#1 C:\xampp\htdocs\newman\App\Models\Page.php(24): Core\Model::getDB()
+#2 C:\xampp\htdocs\newman\App\Controllers\Home.php(43): App\Models\Page::getHomePageData()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 C:\xampp\htdocs\newman\Core\Controller.php(57): call_user_func_array(Array, Array)
+#5 C:\xampp\htdocs\newman\Core\Router.php(179): Core\Controller->__call('index', Array)
+#6 C:\xampp\htdocs\newman\public\index.php(102): Core\Router->dispatch('')
+#7 {main}
+Thrown in  'C:\xampp\htdocs\newman\Core\Model.php' on line 33
+[04-Apr-2017 22:37:46 Europe/Berlin] Uncaught exception: 'PDOException' with message 'SQLSTATE[HY000] [1045] Access denied for user 'wwwnew6_jburns14'@'localhost' (using password: YES)'
+Stack trace: #0 C:\xampp\htdocs\newman\Core\Model.php(33): PDO->__construct('mysql:host=loca...', 'wwwnew6_jburns1...', 'Hopehope1!')
+#1 C:\xampp\htdocs\newman\App\Models\Page.php(24): Core\Model::getDB()
+#2 C:\xampp\htdocs\newman\App\Controllers\Home.php(43): App\Models\Page::getHomePageData()
+#3 [internal function]: App\Controllers\Home->indexAction()
+#4 C:\xampp\htdocs\newman\Core\Controller.php(57): call_user_func_array(Array, Array)
+#5 C:\xampp\htdocs\newman\Core\Router.php(179): Core\Controller->__call('index', Array)
+#6 C:\xampp\htdocs\newman\public\index.php(102): Core\Router->dispatch('')
+#7 {main}
+Thrown in  'C:\xampp\htdocs\newman\Core\Model.php' on line 33

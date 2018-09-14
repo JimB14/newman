@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}
+  {{ content.browser_title }}
+{% endblock %}
+
+{% block metadescription %}
+   Newman's Ground Care offers convenient online payment with PayPal.
+{% endblock %}
+
+{% block css %}
+<style>
+    #payonline-paypal-div {
+        margin-top: 30px;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+    }
+    #payonline-paypal-div form {
+        margin: 20px 0px;
+    }
+    #payonline-paypal-div #paypal-image {
+        cursor: pointer;
+    }
+   @media(max-width: 767px) {
+        #payonline-paypal-div {
+           margin-bottom: 186px;
+        }
+   }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-md-12">
+      <h1>
+        {{ content.browser_title }}
+        <span class="pull-right">
+          <img class="palm-tree-alignment" src="/assets/images/palm_tree.png">
+        </span>
+      </h1>
+        <hr>
+    </div>
+
+    <div class="col-md-8 col-sm-8">
+        <div>
+
+            <form method="post" action="/payonline/update-payonline" id="editpayonlinepage" name="editpayonlinepage">
+
+                <article id="editablepayonlinecontent" class="editablecontent" style="width:100%; line-height:1.7em;margin-bottom: 15px;">
+                    {{ content.page_content|raw }}
+                </article>
+
+                <article class="admin-hidden">
+                    <a class="btn btn-primary" href="#" onclick="saveEditedPage()">Save</a>
+                    <a class="btn btn-info" href="#!" onclick="turnOffEditing()">Cancel</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <!-- page_id = 0 is set @getAddPage() in AdminController -->
+                  {% if content.id == 0 %}
+                    <br><br>
+                    <input type="text" name="browser_title" placeholder="Enter browser title (slug)">
+                  {% endif %}
+                </article>
+
+                <input type="hidden" name="thepayonlinedata" id="thepayonlinedata">
+                <input type="hidden" name="oldpayonline" id="oldpayonline">
+                <input type="hidden" name="page_id" value="{{ content.id }}">
+
+            </form>
+        </div>
+
+   </div>
+
+    <div class="col-md-4 col-sm-4">
+        <div class="services-image-gallery">
+            <!-- <div class="services-image-animation"> -->
+            <div class="pull-right">
+              <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_200x51.png"  alt="PayPal">
+              <!-- <span class="text-description">PayPal makes it easy</span> -->
+            </div>
+        </div>
+    </div>
+
+</div><!-- // .row  -->
+<div class="row">
+   <div class="col-sm-4">
+      <div id="payonline-paypal-div">
+         <h3>Make online payment now</h3>
+         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="48JCELZ89XVY6">
+            <input id="paypal-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+         </form>
+      </div>
+   </div>
+</div>
+{% endblock %}
+
+{% block bottomjs %}
+
+  {# include javascript for page editing for logged in user with access rights #}
+  {% if session.user == true and session.access_level == 2 %}
+    {% include 'admin/admin-payonline-js.php' %}
+  {% endif %}
+
+{% endblock %}

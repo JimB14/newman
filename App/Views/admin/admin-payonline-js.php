@@ -19,8 +19,8 @@ function makePageEditable(item) // called in menu Admin > Edit content
       $(".editablecontent").attr("contenteditable","true");
       // add class to
       $(".editablecontent").addClass("outlined");
-      // store value of #editableaboutcontent into #old (hidden input field)
-      $("#oldabout").val($("#editableaboutcontent").html());
+      // store value of #editablecontent into #old (hidden input field)
+      $("#oldpayonline").val($("#editablepayonlinecontent").html());
 
       var editoroptions =
       {
@@ -48,9 +48,6 @@ function makePageEditable(item) // called in menu Admin > Edit content
   }
 }
 
-
-
-
 function turnOffEditing(item)
 {
   // built-in CKEDITOR function to find every live instance
@@ -70,40 +67,36 @@ function turnOffEditing(item)
   $(".editablecontent").removeClass("outlined");
 
   // if hidden input field -- #old -- has content, replace with null
-  if ($('#oldabout').val() != '')
+  if ($('#oldpayonline').val() != '')
   {
-      $(".editablecontent").html($("#oldabout").val());
+      $(".editablecontent").html($("#oldpayonline").val());
   }
 }
-
-
 
 
 
 function saveEditedPage()
 {
   // get data from ckeditor (~ line #85) and store in variable (where does getData come from? -- a CKEDITOR method?)
-  var aboutpagedata = editor.getData();
+  var payonlinepagedata = editor.getData();
 
   // store data (pagedata) into hidden input field with name & id of "thedata" -- #the data -- (~ line #21)
-  $("#theaboutdata").val(aboutpagedata);
+  $("#thepayonlinedata").val(payonlinepagedata);
 
   // pass option to jQuery form plugin (after ajaxSubmit executes showResponse function)
   //  options is a Javacript object
   var options = { success: showResponse };
 
-  // syntax to submit form (form name id = editaboutpage);
+  // syntax to submit form (form name id = editpage);
   // 'unbind('submit')' prevents normal form submission like jQuery event.preventDefault()
   // .ajaxSubmit (jQuery form plugin built-in method) Resource: http://malsup.com/jquery/form/#ajaxSubmit
   // .ajaxSubmit "immediately serializes the form  data and sends it to the server." (source: http://jquery.malsup.com/form/#faq)
-  $("#editaboutpage").unbind('submit').ajaxSubmit(options);
+  $("#editpayonlinepage").unbind('submit').ajaxSubmit(options);
   //$("#editpage").unbind('submit').ajaxSubmit();
 
   // don't do anything else
   return false;
 }
-
-
 
 
 // Resource:  http://malsup.com/jquery/form/#ajaxSubmit
@@ -112,7 +105,7 @@ function showResponse(responseText, statusText, xhr, $form)
   //if (responseText == 'OK')
   if (responseText == '')
   {
-      $("#oldabout").val('');
+      $("#oldpayonline").val('');
       turnOffEditing();
   }
   else

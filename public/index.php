@@ -88,6 +88,7 @@ $router->add('about', ['controller' => 'About',  'action' => 'index']);
 $router->add('calendar', ['controller' => 'Calendar',  'action' => 'index']);
 $router->add('services', ['controller' => 'Services', 'action' => 'index']);
 $router->add('contact', ['controller' => 'Contact', 'action' => 'index']);
+$router->add('pay-online', ['controller' => 'Payonline', 'action' => 'index']);
 $router->add('testimonials', ['controller' => 'Testimonials', 'action' => 'index']);
 $router->add('register', ['controller' => 'Register', 'action' => 'index']);
 $router->add('login', ['controller' => 'Login', 'action' => 'index']);

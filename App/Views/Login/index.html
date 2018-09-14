@@ -26,7 +26,7 @@
     <div class="col-md-8">
 
           {% if session.loginerror %}
-            {% include 'errormessage.html' %}
+            {% include './Error/errormessage.html' %}
           {% endif %}
 
           <form name="loginform" id="loginform" action="login/login-user" method="post" class="form-horizontal">
@@ -43,6 +43,8 @@
                   <label for="password" class="col-sm-3 control-label">Password</label>
                   <div class="col-sm-9">
                       <input type="password" class="form-control required" name="password" id="password" placeholder="Password">
+                      <input type="text" class="form-control" id="txthdnPassword" style="background-color: #fff;">
+                      <label><input type="checkbox" id="chkShow"> Show password</label>
                   </div>
               </div>
 
@@ -68,7 +70,33 @@
 {% block bottomjs %}
 <script>
 $(document).ready(function(){
-    //$("#loginform").validate();
+
+    $("#loginform").validate();
+
+
+    $('#txthdnPassword').hide();
+    $('#txthdnPassword').attr('readonly','readonly');
+
+    /* copy password textbox value to plain textbox value,
+    when focus goes out of password textbox. So use blur() event. */
+    $('#password').blur(function() {
+      $('#txthdnPassword').val($(this).val());
+    });
+
+    /* show/hide textboxes based on checkbox value. */
+    $('#chkShow').change(function() {
+        var isChecked = $(this).prop('checked');
+        if (isChecked) {
+           $('#password').hide();
+           $('#txthdnPassword').show();
+        }
+        else {
+           $('#password').show();
+           $('#txthdnPassword').hide();
+        }
+    });
+
+
 });
 </script>
 {% endblock %}

@@ -57,6 +57,7 @@
             <li><a href="/contact?question=career">Employment</a></li>
           </ul>
         </li>
+        <li><a {% if payonlineindex == 'true' %}style="color:#fff;"{% endif %} href="/pay-online">Pay online</a></li>
 
         <!-- call public static function in LoggedIn class -->
           {% if session.user %}
@@ -79,7 +80,7 @@
                   <li><a href="/admin/page/add">Add page</a></li>
                   <li role=separator class=divider></li>
                   <li><a href="#">Another action</a></li>
-                -->
+                  -->
                 </ul>
             </li>
             {% endif %}
